@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+const baseURL = process.env.REACT_APP_API_URL; // ✅ Set once at the top
+
 const UploadForm = ({ file, setFile, token, onUploadSuccess }) => {
   const handleUpload = async () => {
     console.log("🔐 Upload Token being sent:", token);
@@ -11,7 +13,7 @@ const UploadForm = ({ file, setFile, token, onUploadSuccess }) => {
     formData.append('file', file);
 
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/api/upload`, formData, {
+      await axios.post(`${baseURL}/api/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,
