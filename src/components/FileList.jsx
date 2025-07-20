@@ -1,10 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 const FileList = ({ files, token, onFileChange }) => {
   const handleDownload = async (id, originalName) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/files/${id}/download`, {
+      const res = await axios.get(`${API_URL}/api/files/${id}/download`, {
         headers: { Authorization: `Bearer ${token}` },
         responseType: 'blob',
       });
@@ -17,34 +19,33 @@ const FileList = ({ files, token, onFileChange }) => {
       link.click();
       document.body.removeChild(link);
     } catch (err) {
-      console.error('❌ Download failed:', err);
+      console.error('❌ Download failed:', err.response?.data || err.message);
     }
   };
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/files/${id}`, {
+      await axios.delete(`${API_URL}/api/files/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      onFileChange(); // 🔁 Refresh the list
+      onFileChange(); // Refresh the list
     } catch (err) {
-      console.error('❌ Delete failed:', err);
+      console.error('❌ Delete failed:', err.response?.data || err.message);
     }
   };
 
   const handleShare = async (id) => {
     const email = prompt("📧 Enter recipient's email to share:");
-
     if (!email) return;
 
     try {
-      await axios.post(`http://localhost:5000/api/share/${id}`, { email }, {
+      await axios.post(`${API_URL}/api/share/${id}`, { email }, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
       alert('✅ Share link generated and sent (mock)');
     } catch (err) {
-      console.error('❌ Share failed:', err);
+      console.error('❌ Share failed:', err.response?.data || err.message);
       alert('Error sharing file.');
     }
   };
@@ -57,10 +58,7 @@ const FileList = ({ files, token, onFileChange }) => {
       ) : (
         <ul className="space-y-4">
           {files.map((file) => (
-            <li
-              key={file._id}
-              className="flex justify-between items-center bg-gray-50 p-3 border rounded"
-            >
+            <li key={file._id} className="flex justify-between items-center bg-gray-50 p-3 border rounded">
               <div>
                 <p className="font-medium">{file.originalName}</p>
                 <p className="text-sm text-gray-500">
