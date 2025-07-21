@@ -11,7 +11,7 @@ const SharedViewer = () => {
   useEffect(() => {
     const fetchSharedFile = async () => {
       try {
-        const res = await fetch(`https://2251085a24c3.ngrok-free.app/api/shared/${token}`
+        const res = await fetch(`https://securedocs-backend.onrender.com/api/shared/${token}`
           , {          responseType: 'blob', // 📦 We expect a file blob
         });
 

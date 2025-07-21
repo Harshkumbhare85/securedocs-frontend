@@ -9,7 +9,7 @@ function SharedFilePage() {
   useEffect(() => {
     const fetchFile = async () => {
       try {
-        const res = await fetch(` https://713eec4839c3.ngrok-free.app/api/files/shared/${token}`);
+        const res = await fetch(` https://securedocs-backend.onrender.com/api/files/shared/${token}`);
         const data = await res.json();
 
         if (res.ok) {
