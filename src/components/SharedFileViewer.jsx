@@ -10,7 +10,8 @@ const SharedFileViewer = () => {
 
   const fetchSharedFile = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/shared/${token}`, {
+      const BASE_URL = process.env.REACT_APP_API_URL;
+      const res = await axios.get(`${BASE_URL}/api/shared/${token}`, {
         responseType: 'blob',
       });
 

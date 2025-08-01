@@ -9,7 +9,7 @@ function SharedFilePage() {
   useEffect(() => {
     const fetchFile = async () => {
       try {
-        const res = await fetch(` https://securedocs-backend.onrender.com/api/files/shared/${token}`);
+        const res = await fetch(`https://securedocs-backend.onrender.com/verify-share/${token}`);
         const data = await res.json();
 
         if (res.ok) {
@@ -33,7 +33,7 @@ function SharedFilePage() {
       <h2 className="text-xl font-bold mb-4">📄 Shared File</h2>
       {fileInfo ? (
         <div className="bg-white shadow p-4 rounded-lg">
-          <p className="font-semibold">File: {fileInfo.originalName}</p>
+          <p className="font-semibold">File: {fileInfo.fileName}</p>
           <a
             href={fileInfo.downloadUrl}
             target="_blank"
