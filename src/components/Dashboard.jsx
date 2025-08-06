@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import UploadForm from './UploadForm';
 import FileList from './FileList';
+import baseUrl from '../../config/baseURL';
 
 const Dashboard = () => {
   const [files, setFiles] = useState([]);
@@ -23,7 +24,7 @@ const Dashboard = () => {
   // ✅ Fetch user files
   const fetchFiles = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/files', {
+      const res = await axios.get(`${baseUrl}/api/files`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setFiles(res.data);

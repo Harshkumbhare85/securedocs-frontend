@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import baseUrl from '../../config/baseURL';
 
 const Signup = () => {
   const [form, setForm] = useState({ name: '', email: '', password: '' });
@@ -18,7 +19,7 @@ const Signup = () => {
     console.log("📦 Sending signup request:", form); // 🔍 DEBUG: Log form data
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/signup', form);
+      const res = await axios.post(`${baseUrl}/api/auth/signup`, form);
       console.log("✅ Signup success. Received token:", res.data.token); // ✅ DEBUG
 
       localStorage.setItem('token', res.data.token);

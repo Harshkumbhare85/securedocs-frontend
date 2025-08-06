@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import baseUrl from '../../config/baseURL';
 
 const SharedViewer = () => {
   const { token } = useParams(); // 🔐 Get token from URL
@@ -11,7 +12,7 @@ const SharedViewer = () => {
   useEffect(() => {
     const fetchSharedFile = async () => {
       try {
-        const res = await fetch(`https://securedocs-backend.onrender.com/api/shared/${token}`
+        const res = await fetch(`${baseUrl}/api/shared/${token}`
           , {          responseType: 'blob', // 📦 We expect a file blob
         });
 

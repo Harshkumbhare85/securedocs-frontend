@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
+import baseUrl from '../../config/baseURL';
 
 // ✅ Set baseURL from environment variable
-const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+//const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 const UploadForm = ({ file, setFile, token, onUploadSuccess }) => {
   const handleUpload = async () => {
@@ -12,10 +13,10 @@ const UploadForm = ({ file, setFile, token, onUploadSuccess }) => {
     formData.append('file', file);
 
     try {
-      console.log("🔐 Uploading file to:", `${baseURL}/api/upload`);
+      console.log("🔐 Uploading file to:", `${baseUrl}/api/upload`);
       console.log("🔐 Upload Token:", token);
 
-      await axios.post(`${baseURL}/api/upload`, formData, {
+      await axios.post(`${baseUrl}/api/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,

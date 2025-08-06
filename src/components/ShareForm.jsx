@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import baseUrl from '../../config/baseURL';
 
 const ShareForm = ({ fileId }) => {
   const [recipientEmail, setRecipientEmail] = useState('');
@@ -12,12 +13,14 @@ const ShareForm = ({ fileId }) => {
 
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/share/${fileId}`,
+        `${baseUrl}/api/share/${fileId}`,
         { email: recipientEmail },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setStatus('✅ File shared successfully!');
-      setShareLink(`http://localhost:3000/shared/${res.data.token}`);
+     // setShareLink(`http://localhost:3000/shared/${res.data.token}`);
+     setShareLink(` https://securedocs-frontend-xi.vercel.app/shared/${res.data.token}`);
+     
     } catch (err) {
       console.error(err);
       setStatus('❌ Share failed');

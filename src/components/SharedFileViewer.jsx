@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import baseUrl from '../../config/baseURL';
 
 const SharedFileViewer = () => {
   const { token } = useParams();
@@ -11,7 +12,7 @@ const SharedFileViewer = () => {
   const fetchSharedFile = async () => {
     try {
       const BASE_URL = process.env.REACT_APP_API_URL;
-      const res = await axios.get(`${BASE_URL}/api/shared/${token}`, {
+      const res = await axios.get(`${baseUrl}/api/shared/${token}`, {
         responseType: 'blob',
       });
 

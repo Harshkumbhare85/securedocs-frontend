@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import baseUrl from '../../config/baseURL';
 
 function SharedFilePage() {
   const { token } = useParams();
@@ -9,7 +10,7 @@ function SharedFilePage() {
   useEffect(() => {
     const fetchFile = async () => {
       try {
-        const res = await fetch(`https://securedocs-backend.onrender.com/verify-share/${token}`);
+        const res = await fetch(`${baseUrl}/verify-share/${token}`);
         const data = await res.json();
 
         if (res.ok) {
