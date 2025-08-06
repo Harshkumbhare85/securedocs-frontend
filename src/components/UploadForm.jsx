@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import baseUrl from '../../config/baseURL';
+import baseUrl from '../config/baseURL';
 
 // ✅ Set baseURL from environment variable
 //const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';

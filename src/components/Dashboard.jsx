@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import UploadForm from './UploadForm';
 import FileList from './FileList';
-import baseUrl from '../../config/baseURL';
+import baseUrl from '../config/baseURL';
 
 const Dashboard = () => {
   const [files, setFiles] = useState([]);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import baseUrl from '../../config/baseURL';
+import baseUrl from '../config/baseURL';
 
 function SharedFilePage() {
   const { token } = useParams();
